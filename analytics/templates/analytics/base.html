@@ -14,7 +14,16 @@
 </head>
 <body class="min-h-screen overflow-y-auto bg-gray-50 dark:bg-gray-900">
   <!--Sticky Navbar-->
+  <!--{% if not hide_navbar %}
   {% include 'nav/navbar.html' %}
+{% endif %}-->
+<!--{% if not request.path == '/login/' and not request.path == '/register/' %}
+  {% include 'nav/navbar.html' %}
+{% endif %}-->
+{% block show_navbar %}
+  {% include 'nav/navbar.html' %}
+{% endblock %}
+
   <!--Success Popup Message-->
   {% if messages %}
     <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-4">

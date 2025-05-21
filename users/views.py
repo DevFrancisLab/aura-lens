@@ -1,6 +1,16 @@
 from django.shortcuts import render, redirect
-#from django.contrib import messages
+from django.contrib import messages
 from .forms import UserRegisterForm
+from django.contrib.auth.views import LoginView
+
+class CustomLoginView(LoginView):
+    template_name = 'users/login.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['hide_navbar'] = True
+        return context
+
 
 def register(request):
     if request.method == 'POST':
@@ -8,10 +18,10 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            #messages.success(request, f"Account created successfully for {username}!")
-            return redirect('analytics-home')
-        #else:
-            #messages.error(request, "Please correct the errors below.")
+            messages.success(request, f"Your account has been created! You are now able to login")
+            return redirect('login')
+        else:
+            messages.error(request, "Please correct the errors below.")
     else:
         form = UserRegisterForm()
     
