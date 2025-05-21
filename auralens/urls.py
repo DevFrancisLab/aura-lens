@@ -25,5 +25,6 @@ urlpatterns = [
     path('register/', user_views.register, name='register'),
     path('login/', CustomLoginView.as_view(), name='login'),  # updated here
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-    path('', include('analytics.urls'))
+    path('', include('analytics.urls')),
+    path('dashboard/', include('dashboard.urls')),
 ]
