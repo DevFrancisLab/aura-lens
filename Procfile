@@ -1,1 +1,1 @@
-web: gunicorn aura_lens.wsgi
+web: gunicorn auralens.wsgi
