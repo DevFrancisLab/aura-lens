@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-(l+&$(ofnsx@8*#mp=1!ln@icvew**1w5zx1!=%2oy9i*gvuhl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['aura-lens.onrender.com']
 
 
 # Application definition
@@ -78,10 +78,7 @@ WSGI_APPLICATION = 'auralens.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default=os.environ.get('postgresql://my_db_i6el_user:89ghFiE5I8ImGXO7tE1chCbaVrzX47GF@dpg-d0nh7c0dl3ps73a91hjg-a.oregon-postgres.render.com/my_db_i6el'))
 }
 
 
@@ -120,7 +117,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
